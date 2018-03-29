@@ -17,7 +17,7 @@
             <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                 <panes>
                     <TitledPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="untitled 2">
-                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="407.0" prefWidth="402.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="407.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                             <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-9.600000000000023" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
                              <GridPane gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                                  <columnConstraints>
