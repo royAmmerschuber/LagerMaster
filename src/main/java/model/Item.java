@@ -1,4 +1,4 @@
-package model;
+package main.java.model;
 
 public abstract class Item {
     public int id;
@@ -7,7 +7,4 @@ public abstract class Item {
     public float weight;
     public Shelf parent;
 
-    private void updateParent(){
-        parent.update(this);
-    }
 }
