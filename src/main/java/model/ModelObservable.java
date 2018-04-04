@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,4 +12,5 @@ public abstract class ModelObservable {
         observers.remove(o);
     }
     public abstract void sendUpdate(Integer shelf, Integer row, Integer column);
+
 }

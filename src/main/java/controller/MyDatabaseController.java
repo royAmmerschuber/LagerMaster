@@ -1,4 +1,4 @@
-package main.java.controller;
+package controller;
 
 import java.sql.DriverManager;
 
@@ -26,39 +26,39 @@ public class MyDatabaseController extends DatabaseController {
     @Override
     public void seed() {
         query(
-                "Create table Shelf(" +
-                "   id int not null PRIMARY KEY AUTO_INCREMENT," +
-                "   name VARCHAR(64) NOT NULL ," +
-                "   rows int not null," +
-                "   columns int not NULL " +
+                "Create table if not exists Shelf(" +
+                    "id int not null PRIMARY KEY AUTO_INCREMENT," +
+                    "name VARCHAR(64) NOT NULL ," +
+                    "rows int not null," +
+                    "columns int not NULL " +
                 ")"
         );
         query(
-                "Create table Item(" +
-                "   id int not null PRIMARY KEY AUTO_INCREMENT," +
-                "   shelfFK int not null," +
-                "   name VARCHAR(64) not null," +
-                "   weight float not null," +
-                "   amount int not null," +
-                "   row int not null," +
-                "   `column` int not null" +
+                "Create table if not exists Item(" +
+                    "id int not null PRIMARY KEY AUTO_INCREMENT," +
+                    "shelfFK int not null," +
+                    "name VARCHAR(64) not null," +
+                    "weight float not null," +
+                    "amount int not null," +
+                    "row int not null," +
+                    "`column` int not null" +
                 ")"
         );
         query(
-                "Create table ItemBasic(" +
+                "Create table if not exists ItemBasic(" +
                     "itemFK int PRIMARY KEY NOT NULL ," +
                     "custom TEXT not null" +
                 ")"
         );
         query(
-                "create table ItemDrive(" +
+                "create table if not exists ItemDrive(" +
                     "itemFK int PRIMARY KEY NOT NULL ," +
                     "capacity FLOAT NOT NULL ," +
                     "type ENUM('ssd','hdd') NOT NULL " +
                 ")"
         );
         query(
-                "create table ItemCpu(" +
+                "create table if not exists ItemCpu(" +
                     "itemFK int NOT NULL PRIMARY KEY ," +
                     "cores int NOT NULL ," +
                     "clockspeed int NOT NULL " +

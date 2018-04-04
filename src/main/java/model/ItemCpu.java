@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 public class ItemCpu extends Item{
     public int cores;

@@ -1,5 +1,6 @@
-package main.java.model;
+package model;
 
 public interface ModelObserver {
-    boolean getUpdate(int shelf, int row, int column);
+    boolean getUpdate(Integer shelf, Integer row, Integer column);
+
 }

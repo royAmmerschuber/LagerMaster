@@ -1,9 +1,10 @@
-package main.java.controller.subControl;
+package controller.subControl;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-import main.java.model.Shelf;
+import model.Model;
+import model.Shelf;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,9 +19,10 @@ public class NewShelfContr implements Initializable{
         Shelf s=new Shelf(
                 Integer.parseInt(txtRows.getText()),
                 Integer.parseInt(txtColumns.getText()),
-                txtName.getText()
+                txtName.getText(),
+                -1
         );
-
+        Model.getInst().addShelf(s);
     }
     @FXML
     public void cancel(){
