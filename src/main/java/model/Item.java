@@ -5,6 +5,4 @@ public abstract class Item {
     public String name;
     public int amount;
     public float weight;
-    public Shelf parent;
-
 }

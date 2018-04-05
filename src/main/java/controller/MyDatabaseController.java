@@ -1,6 +1,11 @@
 package controller;
 
+import model.Shelf;
+
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyDatabaseController extends DatabaseController {
     private static final String DB_URL="jdbc:mysql://localhost/326";
@@ -64,5 +69,27 @@ public class MyDatabaseController extends DatabaseController {
                     "clockspeed int NOT NULL " +
                 ")"
         );
+    }
+
+    public List<Shelf> getShelfs() {
+        List<Shelf> shelves=new ArrayList<>();
+        ResultSet rs=query("select * from shelf");
+        try{
+        while(rs.next()){
+            shelves.add(new Shelf(
+                    rs.getInt("rows"),
+                    rs.getInt("columns"),
+                    rs.getString("name"),
+                    rs.getInt("id")
+            ));
+        }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return shelves;
+    }
+
+    public void deleteShelf(int index) {
+        query("delete from shelf where id=?",index);
     }
 }

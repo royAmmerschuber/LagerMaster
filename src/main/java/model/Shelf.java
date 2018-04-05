@@ -15,6 +15,7 @@ public class Shelf {
     }
 
     public List<Item> getItems(int row,int col){
+        if(items[row][col]==null) items[row][col]=new ArrayList<>();
         return items[row][col];
     }
 

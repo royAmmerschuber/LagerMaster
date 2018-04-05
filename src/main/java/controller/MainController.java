@@ -26,7 +26,21 @@ public class MainController implements Initializable{
         mod=Model.getInst();
         view=ViewController.getInst(accord);
         mod.addObserver(view);
-        mod.addShelf(new Shelf(5,2,"paul",-7));
+        /*Shelf s=new Shelf(5,2,"paul",-7);
+        Item i=new ItemBasic();
+        i.amount=3;
+        i.id=-1;
+        i.name="test";
+        i.weight=3;
+        s.addItem(2, 1,i);
+        i=new ItemCpu();
+        i.amount=9;
+        i.id=-1;
+        i.name="fest";
+        i.weight=31;
+        s.addItem(2, 1,i);
+        mod.addShelf(s);*/
+        mod.reload();
     }
 
     @FXML

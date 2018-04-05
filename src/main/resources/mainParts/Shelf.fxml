@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 
 <TitledPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="303.0" prefWidth="520.0" text="untitled 2" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="286.0" prefWidth="424.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+      <Button fx:id="delete" mnemonicParsing="false" text="delete" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
         <ScrollPane fx:id="scroll" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-9.600000000000023" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
          <content>
               <GridPane fx:id="grid" gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
-                  <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="120.0" prefWidth="120.0" />
+                  <!--<columnConstraints>
+                      &lt;!&ndash;<ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="120.0" prefWidth="120.0" />&ndash;&gt;
                   </columnConstraints>
                   <rowConstraints>
-                      <RowConstraints maxHeight="-Infinity" minHeight="45" prefHeight="45" vgrow="SOMETIMES" />
+                      &lt;!&ndash;<RowConstraints maxHeight="-Infinity" minHeight="45" prefHeight="45" vgrow="SOMETIMES" />&ndash;&gt;
                   </rowConstraints>
+                   <children>
+                      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                         <children>
+                            <Button mnemonicParsing="false" text="Empty" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                         </children>
+                      </AnchorPane>
+                   </children>-->
               </GridPane>
          </content>
         </ScrollPane>

@@ -22,7 +22,7 @@ public class NewShelfContr implements Initializable{
                 txtName.getText(),
                 -1
         );
-        Model.getInst().addShelf(s);
+        Model.getInst().newShelf(s);
     }
     @FXML
     public void cancel(){

@@ -18,12 +18,11 @@ public class Model extends ModelObservable {
 
     List<Shelf> shelfs;
     protected Model() {
-        shelfs=new ArrayList<>();
+        reload();
     }
 
-    public void addShelf(Shelf s) {
-        shelfs.add(s);
-        sendUpdate(shelfs.indexOf(s),null,null);
+    public void newShelf(Shelf s) {
+        addShelf(s);
         MyDatabaseController db=MyDatabaseController.getInstance();
         db.query(
                 "insert into shelf" +
@@ -32,8 +31,12 @@ public class Model extends ModelObservable {
                     "(?,?,?)",
                 s.name,
                 s.getHeight(),
-                s.getHeight()
+                s.getWidth()
         );
+    }
+    public void addShelf(Shelf s){
+        shelfs.add(s);
+        sendUpdate(shelfs.indexOf(s),null,null);
     }
     public Shelf getShelf(int index){
         return shelfs.get(index);
@@ -50,6 +53,12 @@ public class Model extends ModelObservable {
     }
 
     public void reload() {
+        shelfs=MyDatabaseController.getInstance().getShelfs();
+        sendUpdate(null,null,null);
+    }
 
+    public void deleteShelf(int index) {
+        MyDatabaseController.getInstance().deleteShelf(index);
+        shelfs.remove(index);
     }
 }
