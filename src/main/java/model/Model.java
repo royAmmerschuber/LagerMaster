@@ -46,6 +46,12 @@ public class Model extends ModelObservable {
     }
 
     @Override
+    public void sendUpdate(Integer shelf, Integer row, Integer column,String action){
+        for(ModelObserver o:observers){
+            o.getUpdate(shelf,row,column,action);
+        }
+    }
+    @Override
     public void sendUpdate(Integer shelf, Integer row, Integer column) {
         for (ModelObserver o:observers) {
             o.getUpdate(shelf,row,column);
@@ -58,7 +64,8 @@ public class Model extends ModelObservable {
     }
 
     public void deleteShelf(int index) {
-        MyDatabaseController.getInstance().deleteShelf(index);
+        MyDatabaseController.getInstance().deleteShelf(shelfs.get(index).id);
         shelfs.remove(index);
+        sendUpdate(index,null,null,"delete");
     }
 }

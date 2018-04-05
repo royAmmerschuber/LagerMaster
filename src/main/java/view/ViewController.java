@@ -49,25 +49,45 @@ public class ViewController implements ModelObserver {
 
     @Override
     public boolean getUpdate(Integer shelf, Integer row, Integer column) {
-        if(shelf!=null){
-            if(row==null&&column==null) {
-                if (accord.getPanes().size() > shelf) {
-                    updateShelf(shelf);
-                } else {
-                    addShelf(accord.getPanes().size());
+        return getUpdate(shelf, row, column,"update");
+    }
+
+    @Override
+    public boolean getUpdate(Integer shelf, Integer row, Integer column, String action) {
+        switch (action){
+            default:{
+                if(shelf!=null){
+                    if(row==null&&column==null) {
+                        if (accord.getPanes().size() > shelf) {
+                            updateShelf(shelf);
+                        } else {
+                            addShelf(accord.getPanes().size());
+                        }
+                        return true;
+                    }else if(row!=null&&column!=null){
+                        updateCell(shelf,row,column);
+                        return true;
+                    }
+                }else{
+                    accord.getPanes().clear();
+                    for(int i=0;i<model.countShelfs();i++){
+                        addShelf(i);
+                    }
                 }
-                return true;
-            }else if(row!=null&&column!=null){
-                updateCell(shelf,row,column);
-                return true;
+                return false;
             }
-        }else{
-            accord.getPanes().clear();
-            for(int i=0;i<model.countShelfs();i++){
-                addShelf(i);
+            case "delete":{
+                if(shelf!=null){
+                    removeShelf(shelf);
+                }
             }
         }
         return false;
+    }
+
+    private void removeShelf(Integer index) {
+
+        accord.getPanes().remove(accord.getPanes().get(index));
     }
 
     private void updateCell(Integer shelf, Integer row, Integer column){
@@ -93,16 +113,15 @@ public class ViewController implements ModelObserver {
                         s.setTitle("shelf"+shelf.name+",Col:"+column+",Row:"+row);
                         s.setScene(new Scene(root));
                         s.show();
-                        int id=cellViews.size();
-                        s.setOnCloseRequest(event1 -> {
-                            s.close();
-                            cellViews.remove(id);
-                        });
                         CellView c=loader.getController();
                         c.column=column;
                         c.row=row;
                         c.shelf=shelfId;
-                        cellViews.add(c);
+                        model.addObserver(c);
+                        s.setOnCloseRequest(event1 -> {
+                            s.close();
+                            model.removeObserver(c);
+                        });
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -156,9 +175,9 @@ public class ViewController implements ModelObserver {
             Shelf shelf=model.getShelf(index);
             TitledPane p=FXMLLoader.load(getClass().getResource("/mainParts/Shelf.fxml"));
             accord.getPanes().add(p);
-            Button delete=(Button)p.getContent().lookup("delete");
+            Button delete=(Button)p.getContent().lookup("#delete");
             delete.setOnAction(event -> {
-                model.deleteShelf(index);
+                model.deleteShelf(accord.getPanes().indexOf(p));
             });
             GridPane g=(GridPane)((ScrollPane)p.getContent().lookup("#scroll")).getContent().lookup("#grid");
             ColumnConstraints cc=new ColumnConstraints(CELL_WIDTH,CELL_WIDTH,CELL_WIDTH,Priority.SOMETIMES,HPos.CENTER,false);

@@ -11,6 +11,9 @@ public abstract class ModelObservable {
     public void removeObserver(ModelObserver o){
         observers.remove(o);
     }
+
+    public abstract void sendUpdate(Integer shelf, Integer row, Integer column, String action);
+
     public abstract void sendUpdate(Integer shelf, Integer row, Integer column);
 
 }

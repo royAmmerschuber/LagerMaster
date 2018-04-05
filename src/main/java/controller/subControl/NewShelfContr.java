@@ -2,7 +2,9 @@ package controller.subControl;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.Model;
 import model.Shelf;
 
@@ -16,17 +18,29 @@ public class NewShelfContr implements Initializable{
 
     @FXML
     public void ok(){
-        Shelf s=new Shelf(
-                Integer.parseInt(txtRows.getText()),
-                Integer.parseInt(txtColumns.getText()),
-                txtName.getText(),
-                -1
-        );
-        Model.getInst().newShelf(s);
+        if(!txtRows.getText().equals("") && !txtName.getText().equals("") && !txtColumns.getText().equals("")){
+
+            Shelf s=new Shelf(
+                    Integer.parseInt(txtRows.getText()),
+                    Integer.parseInt(txtColumns.getText()),
+                    txtName.getText(),
+                    -1
+            );
+            Model.getInst().newShelf(s);
+            ((Stage)txtColumns.getScene().getWindow()).close();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("not filled out correctly");
+            alert.setHeaderText("please fill everything out");
+            alert.setContentText("okay?");
+
+            alert.showAndWait();
+        }
+
     }
     @FXML
     public void cancel(){
-
+        ((Stage)txtColumns.getScene().getWindow()).close();
     }
 
     @Override

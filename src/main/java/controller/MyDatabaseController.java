@@ -76,12 +76,14 @@ public class MyDatabaseController extends DatabaseController {
         ResultSet rs=query("select * from shelf");
         try{
         while(rs.next()){
+
             shelves.add(new Shelf(
                     rs.getInt("rows"),
                     rs.getInt("columns"),
                     rs.getString("name"),
                     rs.getInt("id")
             ));
+
         }
         }catch (Exception e){
             e.printStackTrace();

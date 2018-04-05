@@ -14,11 +14,11 @@ public abstract class DatabaseController {
             }
             try{
                 ResultSet rs=p.executeQuery();
-                if(DEBUG) System.out.println("dataMod: "+query);
+                if(DEBUG) System.out.println("dataMod: "+p.toString());
                 return rs;
 
             }catch(Exception e){
-                if(DEBUG) System.out.println("structMod: "+query);
+                if(DEBUG) System.out.println("structMod: "+p.toString());
                 p.execute();
             }
         } catch (SQLException e) {
