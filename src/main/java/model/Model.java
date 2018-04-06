@@ -2,7 +2,6 @@ package model;
 
 import controller.MyDatabaseController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Model extends ModelObservable {
@@ -23,7 +22,7 @@ public class Model extends ModelObservable {
 
     public void newShelf(Shelf s) {
         addShelf(s);
-        MyDatabaseController db=MyDatabaseController.getInstance();
+        MyDatabaseController db=MyDatabaseController.getInst();
         db.query(
                 "insert into shelf" +
                     "(name, rows, columns) " +
@@ -59,13 +58,17 @@ public class Model extends ModelObservable {
     }
 
     public void reload() {
-        shelfs=MyDatabaseController.getInstance().getShelfs();
+        shelfs=MyDatabaseController.getInst().getShelfs();
         sendUpdate(null,null,null);
     }
 
     public void deleteShelf(int index) {
-        MyDatabaseController.getInstance().deleteShelf(shelfs.get(index).id);
+        MyDatabaseController.getInst().deleteShelf(shelfs.get(index).id);
         shelfs.remove(index);
         sendUpdate(index,null,null,"delete");
+    }
+
+    public int getShelfIndex(Shelf shelf) {
+        return shelfs.indexOf(shelf);
     }
 }

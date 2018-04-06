@@ -27,7 +27,6 @@ public class NewShelfContr implements Initializable{
                     -1
             );
             Model.getInst().newShelf(s);
-            ((Stage)txtColumns.getScene().getWindow()).close();
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("not filled out correctly");

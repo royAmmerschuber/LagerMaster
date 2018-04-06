@@ -8,13 +8,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.HardDriveType;
+import model.Item;
 import model.ItemFactory;
 import model.Model;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class newItem implements Initializable {
+public class NewItem implements Initializable {
     @FXML public ChoiceBox type;
     @FXML public TextField name;
     @FXML public TextField amount;
@@ -89,11 +91,24 @@ public class newItem implements Initializable {
             !amount.getText().equals("") &&
             !weight.getText().equals("")
         ){
-            Model.getInst().getShelf(shelf).addItem(row,col,
-                    ItemFactory.newItem(
-                            name.getText(),
-                            Integer.parseInt(amount.getText()),
-                            Float.parseFloat(weight.getText()),""));
+            Item i;
+            switch(currentType){
+                default:{i=ItemFactory.newItem(
+                        name.getText(),
+                        Integer.parseInt(amount.getText()),
+                        Float.parseFloat(weight.getText()),extra1.getText());}break;
+                case 1:{i=ItemFactory.newItem(
+                        name.getText(),
+                        Integer.parseInt(amount.getText()),
+                        Float.parseFloat(weight.getText()),
+                        Integer.parseInt(extra1.getText()),
+                        Integer.parseInt(extra2.getText()));}break;
+                case 2:{i=ItemFactory.newItem(
+                        name.getText(),
+                        Integer.parseInt(amount.getText()),
+                        Float.parseFloat(weight.getText()),Float.parseFloat(extra1.getText()),HardDriveType.valueOf(extra2.getText()));}break;
+            }
+            Model.getInst().getShelf(shelf).newItem(row,col,i);
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Enter all values");

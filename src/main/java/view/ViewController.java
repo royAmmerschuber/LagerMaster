@@ -7,10 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Accordion;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.Item;
@@ -117,6 +114,7 @@ public class ViewController implements ModelObserver {
                         c.column=column;
                         c.row=row;
                         c.shelf=shelfId;
+                        c.reloadItems();
                         model.addObserver(c);
                         s.setOnCloseRequest(event1 -> {
                             s.close();
@@ -177,7 +175,12 @@ public class ViewController implements ModelObserver {
             accord.getPanes().add(p);
             Button delete=(Button)p.getContent().lookup("#delete");
             delete.setOnAction(event -> {
-                model.deleteShelf(accord.getPanes().indexOf(p));
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "are you sure?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+                alert.showAndWait();
+
+                if (alert.getResult() == ButtonType.YES) {
+                    model.deleteShelf(accord.getPanes().indexOf(p));
+                }
             });
             GridPane g=(GridPane)((ScrollPane)p.getContent().lookup("#scroll")).getContent().lookup("#grid");
             ColumnConstraints cc=new ColumnConstraints(CELL_WIDTH,CELL_WIDTH,CELL_WIDTH,Priority.SOMETIMES,HPos.CENTER,false);

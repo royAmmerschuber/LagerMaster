@@ -6,8 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import controller.MyDatabaseController;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class Main extends Application {
 
     @Override
@@ -18,9 +16,8 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 1000, 800));
         primaryStage.show();
     }
-
     public static void main(String[] args) {
-        MyDatabaseController db=MyDatabaseController.getInstance();
+        MyDatabaseController db=MyDatabaseController.getInst();
         db.seed();
         launch(args);
     }
