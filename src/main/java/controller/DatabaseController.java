@@ -27,6 +27,5 @@ public abstract class DatabaseController {
         }
         return null;
     }
-
     public abstract void seed();
 }

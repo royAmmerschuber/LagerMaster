@@ -9,9 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyDatabaseController extends DatabaseController {
+
+    //Database Connection settings
     private static final String DB_URL="jdbc:mysql://localhost/326";
     private static final String USER="root";
     private static final String PASS="";
+
+
     private static MyDatabaseController instance;
     public static MyDatabaseController getInst(){
         if(instance==null){
@@ -177,5 +181,25 @@ public class MyDatabaseController extends DatabaseController {
         query("delete from item where row=? and `column`=?;",
                 row,col
         );
+    }
+
+    public int insertShelf(Shelf s) {
+        query(
+                "insert into shelf" +
+                        "(name, rows, columns) " +
+                        "VALUES " +
+                        "(?,?,?)",
+                s.name,
+                s.getHeight(),
+                s.getWidth()
+        );
+        ResultSet rs =query("select LAST_INSERT_ID()");
+        try {
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

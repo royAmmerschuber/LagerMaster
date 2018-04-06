@@ -8,11 +8,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
 import javafx.stage.Stage;
 import model.*;
+import org.junit.experimental.categories.Category;
+import org.loadui.testfx.GuiTest;
+import org.loadui.testfx.categories.TestFX;
 import view.ViewController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 
 public class MainController implements Initializable{
 
@@ -60,4 +62,5 @@ public class MainController implements Initializable{
     public void reloadData(){
         Model.getInst().reload();
     }
+
 }

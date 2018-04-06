@@ -15,7 +15,7 @@ public class Model extends ModelObservable {
     }
     //Other Stuff
 
-    List<Shelf> shelfs;
+    private List<Shelf> shelfs;
     protected Model() {
         reload();
     }
@@ -23,15 +23,8 @@ public class Model extends ModelObservable {
     public void newShelf(Shelf s) {
         addShelf(s);
         MyDatabaseController db=MyDatabaseController.getInst();
-        db.query(
-                "insert into shelf" +
-                    "(name, rows, columns) " +
-                "VALUES " +
-                    "(?,?,?)",
-                s.name,
-                s.getHeight(),
-                s.getWidth()
-        );
+        s.id=db.insertShelf(s);
+
     }
     public void addShelf(Shelf s){
         shelfs.add(s);

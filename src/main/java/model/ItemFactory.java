@@ -46,6 +46,7 @@ public class ItemFactory {
             }else{
                 return null;
             }
+            i.id=rs.getInt("id");
             return i;
         }catch (Exception e){
             e.printStackTrace();
