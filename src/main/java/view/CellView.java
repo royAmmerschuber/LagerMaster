@@ -1,5 +1,6 @@
 package view;
 
+import controller.ErrorLogger;
 import controller.subControl.NewItem;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,6 +48,8 @@ public class CellView implements Initializable, ModelObserver {
             c.col=column;
         }catch (Exception e){
             e.printStackTrace();
+            ErrorLogger.logException(e);
+
         }
     }
     @Override
@@ -71,6 +74,8 @@ public class CellView implements Initializable, ModelObserver {
             grid=FXMLLoader.load(getClass().getResource("/mainParts/CellViewTable.fxml"));
         }catch (Exception e){
             e.printStackTrace();
+            ErrorLogger.logException(e);
+
         }
         ap.getChildren().add(grid);
         ((Button)grid.lookup("#deleteAll")).setOnAction(event -> {

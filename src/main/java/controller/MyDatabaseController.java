@@ -29,7 +29,7 @@ public class MyDatabaseController extends DatabaseController {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con= DriverManager.getConnection(DB_URL,USER,PASS);
         } catch (Exception e) {
-            e.printStackTrace();
+            ErrorLogger.logException(e);
         }
     }
 
@@ -142,6 +142,8 @@ public class MyDatabaseController extends DatabaseController {
             return rs.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
+            ErrorLogger.logException(e);
+
         }
 
         return -1;
@@ -167,6 +169,8 @@ public class MyDatabaseController extends DatabaseController {
             }
         }catch (Exception e){
             e.printStackTrace();
+            ErrorLogger.logException(e);
+
         }
         return items;
     }
@@ -199,6 +203,8 @@ public class MyDatabaseController extends DatabaseController {
             return rs.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
+            ErrorLogger.logException(e);
+
         }
         return -1;
     }

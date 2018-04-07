@@ -1,5 +1,6 @@
 package view;
 
+import controller.ErrorLogger;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -122,11 +123,15 @@ public class ViewController implements ModelObserver {
                         });
                     }catch (Exception e){
                         e.printStackTrace();
+                        ErrorLogger.logException(e);
+
                     }
                 });
                 grid.add(cell,column,row);
             }catch (Exception e){
                 e.printStackTrace();
+                ErrorLogger.logException(e);
+
             }
         }
         if(items.size()==0){
@@ -192,6 +197,8 @@ public class ViewController implements ModelObserver {
             updateShelf(index);
         }catch (Exception e){
             e.printStackTrace();
+            ErrorLogger.logException(e);
+
         }
     }
 

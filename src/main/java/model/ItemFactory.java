@@ -1,5 +1,7 @@
 package model;
 
+import controller.ErrorLogger;
+
 import java.sql.ResultSet;
 
 public class ItemFactory {
@@ -50,6 +52,8 @@ public class ItemFactory {
             return i;
         }catch (Exception e){
             e.printStackTrace();
+            ErrorLogger.logException(e);
+
             return null;
         }
     }

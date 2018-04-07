@@ -56,6 +56,8 @@ public class MainController implements Initializable{
             s.show();
         }catch (Exception e){
             e.printStackTrace();
+            ErrorLogger.logException(e);
+
         }
     }
     @FXML

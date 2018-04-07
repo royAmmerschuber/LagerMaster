@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -12,10 +13,13 @@ import model.HardDriveType;
 import model.Item;
 import model.ItemFactory;
 import model.Model;
+import org.junit.experimental.categories.Category;
+import org.loadui.testfx.GuiTest;
+import org.loadui.testfx.categories.TestFX;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+@Category(TestFX.class)
 public class NewItem implements Initializable {
     @FXML public ChoiceBox type;
     @FXML public TextField name;
@@ -85,6 +89,11 @@ public class NewItem implements Initializable {
             (
                 !extra2.getText().equals("") ||
                 currentType==0
+            )&&
+            (
+                extra2.getText().equals("ssd")||
+                extra2.getText().equals("hdd")||
+                currentType!=2
             )&&
             !extra1.getText().equals("") &&
             !name.getText().equals("") &&
@@ -157,4 +166,5 @@ public class NewItem implements Initializable {
         }
         return newValue;
     }
+
 }

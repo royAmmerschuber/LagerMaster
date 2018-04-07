@@ -12,9 +12,9 @@
       <ChoiceBox fx:id="type" layoutX="14.0" layoutY="14.0" prefWidth="150.0" value="Custom" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
           <items>
               <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="Custom" />
-                  <String fx:value="Cpu" />
-                  <String fx:value="Drive" />
+                  <String fx:value="Custom" fx:id="custom" />
+                  <String fx:value="Cpu" fx:id="cpu"/>
+                  <String fx:value="Drive" fx:id="drive"/>
               </FXCollections>
           </items>
       </ChoiceBox>
@@ -28,6 +28,6 @@
          </children>
       </AnchorPane>
       <Button layoutX="14.0" layoutY="287.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="59.0" text="cancel" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" />
-      <Button layoutX="368.0" layoutY="287.0" mnemonicParsing="false" onAction="#ok" prefHeight="25.0" prefWidth="59.0" text="ok" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+      <Button fx:id="ok" layoutX="368.0" layoutY="287.0" mnemonicParsing="false" onAction="#ok" prefHeight="25.0" prefWidth="59.0" text="ok" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
    </children>
 </AnchorPane>
