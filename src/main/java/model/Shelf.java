@@ -52,7 +52,7 @@ public class Shelf {
     }
     public void deleteAll(int row,int col){
         items[row][col].clear();
-        MyDatabaseController.getInst().deleteItems(row,col);
+        MyDatabaseController.getInst().deleteItems(id,row,col);
         Model m=Model.getInst();
         m.sendUpdate(m.getShelfIndex(this),row,col);
     }

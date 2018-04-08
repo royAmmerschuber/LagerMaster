@@ -98,8 +98,8 @@ public class MyDatabaseController extends DatabaseController {
         }
         return shelves;
     }
-    public void deleteShelf(int index) {
-        query("delete from shelf where id=?",index);
+    public void deleteShelf(int dbIndex) {
+        query("delete from shelf where id=?",dbIndex);
     }
 
     public int insertItem(int dbShelf,int row, int col, Item item){
@@ -181,9 +181,9 @@ public class MyDatabaseController extends DatabaseController {
         );
 
     }
-    public void deleteItems(int row,int col){
-        query("delete from item where row=? and `column`=?;",
-                row,col
+    public void deleteItems(int dbShelf,int row,int col){
+        query("delete from item where shelfFK=? and row=? and `column`=?;",
+                dbShelf,row,col
         );
     }
 

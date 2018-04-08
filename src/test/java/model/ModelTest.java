@@ -3,6 +3,8 @@ package model;
 import controller.MyDatabaseController;
 import org.junit.jupiter.api.*;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,20 +16,13 @@ class ModelTest {
     void setUp() {
         MyDatabaseController db=MyDatabaseController.getInst();
         db.query(
-                "drop TABLE if exists shelf,item,itemdrive,itembasic,itemcpu;"
+                "drop TABLE if exists shelf,itemdrive,itembasic,itemcpu,item;"
         );
         db.seed();
         Model.getInst().reload();
 
     }
-    @AfterAll
-    static void tearDown(){
-        MyDatabaseController db=MyDatabaseController.getInst();
-        db.query(
-                "drop TABLE if exists shelf,item,itemdrive,itembasic,itemcpu;"
-        );
-    }
-
+    //shelfs
     @Test
     void reload() {
         MyDatabaseController db=MyDatabaseController.getInst();
@@ -40,6 +35,7 @@ class ModelTest {
         assertEquals(5,s.getHeight());
         assertEquals(2,s.getWidth());
     }
+
     @Test
     void newShelf() {
         MyDatabaseController db=MyDatabaseController.getInst();
@@ -60,6 +56,7 @@ class ModelTest {
         assertEquals(s1.getHeight(),s2.getHeight());
         assertEquals(s1.getWidth(),s2.getWidth());
     }
+
     @Test
     void deleteShelf() {
         MyDatabaseController db=MyDatabaseController.getInst();
@@ -82,7 +79,7 @@ class ModelTest {
         assertEquals(s1.getWidth(),s2.getWidth());
         //</editor-fold>
     }
-
+    //items
     @Test
     void newItem(){
         MyDatabaseController db=MyDatabaseController.getInst();
@@ -144,6 +141,7 @@ class ModelTest {
         assertEquals(((ItemCpu)i1).clockSpeed,((ItemCpu)i2).clockSpeed);
         //</editor-fold>
     }
+
     @Test
     void removeItem(){
         MyDatabaseController db=MyDatabaseController.getInst();
@@ -171,6 +169,24 @@ class ModelTest {
         assertEquals(s.getItems(2,4).size(),0);
         assertEquals(db.getItems(s.id,3,4).size(),0);
 
+
+    }
+    @Test
+    void removeItems() throws SQLException {
+        MyDatabaseController db=MyDatabaseController.getInst();
+        Model m=Model.getInst();
+        m.newShelf(new Shelf(4,7,"testint1",-1));
+        Shelf s=m.getShelf(0);
+        s.newItem(2,6,ItemFactory.newItem("test1",44,2.374f,84,3));
+        s.newItem(3,4,ItemFactory.newItem("test2",41,2.374f,"blafdfdaka"));
+        s.newItem(1,5,ItemFactory.newItem("test3",93,2.374f,612.937f,HardDriveType.ssd));
+        s.newItem(1,5,ItemFactory.newItem("test4",93,2.374f,612.937f,HardDriveType.ssd));
+        s.newItem(1,5,ItemFactory.newItem("test5",93,2.374f,612.937f,HardDriveType.ssd));
+        s.newItem(2,6,ItemFactory.newItem("test6",4,2.374f,"blafdka"));
+        s.deleteAll(1,5);
+        assertEquals(0,s.getItems(1,5).size());
+        ResultSet rs=db.query("select * from item where row=1 and `column`=5");
+        assertFalse(rs.next());
 
     }
 
